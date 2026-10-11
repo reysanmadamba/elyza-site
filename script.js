@@ -384,3 +384,54 @@ if (!calm) $$('.card').forEach((c) => {
   });
   c.addEventListener('pointerleave', () => { c.style.removeProperty('--rx'); c.style.removeProperty('--ry'); });
 });
+
+/* ---------- work: portfolio posts added from /admin ---------- */
+(async () => {
+  let posts = [];
+  try {
+    const res = await fetch('/api/posts');
+    if (res.ok) posts = (await res.json()).posts || [];
+  } catch {}
+  if (!posts.length) return;
+
+  const section = $('#work'), grid = $('#grid'), chips = $('#chips');
+  const names = { glam: 'glam', play: 'play', peaks: 'peaks', shred: 'shred', life: 'life' };
+  const used = ['all', ...Object.keys(names).filter((c) => posts.some((p) => p.category === c))];
+
+  function draw(filter) {
+    grid.replaceChildren(...posts.filter((p) => filter === 'all' || p.category === filter).map((p) => {
+      const fig = document.createElement('figure');
+      fig.className = 'post';
+      fig.dataset.platform = p.platform;
+      const frame = document.createElement('iframe');
+      frame.src = p.embed;
+      frame.loading = 'lazy';
+      frame.title = p.caption || `${p.platform} post`;
+      frame.allow = 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';
+      frame.allowFullscreen = true;
+      const cap = document.createElement('figcaption');
+      const text = document.createElement('span');
+      text.textContent = p.caption || '';
+      const link = document.createElement('a');
+      link.href = p.url;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = `${p.platform} ↗`;
+      cap.append(text, link);
+      fig.append(frame, cap);
+      return fig;
+    }));
+    $$('button', chips).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.filter === filter)));
+  }
+
+  if (used.length > 2) used.forEach((c) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.dataset.filter = c;
+    b.textContent = c === 'all' ? 'everything' : names[c];
+    b.addEventListener('click', () => draw(c));
+    chips.append(b);
+  });
+  section.hidden = false;
+  draw('all');
+})();

@@ -255,3 +255,25 @@ fieldset button.on { outline: 3px solid var(--berry); outline-offset: 2px; trans
 .hint, .love, .lookname { font-size: 1.15rem; }
 .world-head p:last-child { font-size: 1.3rem; line-height: 1.3; }
 .title { letter-spacing: 0; }
+
+/* work: posts she adds from /admin */
+.chips { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; margin-bottom: 1.6rem; }
+.chips button {
+  border: 0; border-radius: 999px; padding: .5rem 1.1rem; font-weight: 700; background: var(--cream); color: var(--berry);
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--hot) 45%, transparent); transition: transform .15s;
+}
+.chips button:hover { transform: translateY(-2px) rotate(-2deg); }
+.chips button[aria-pressed="true"] { background: var(--hot); color: #fff; box-shadow: 0 3px 0 var(--berry); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 1.4rem; }
+.post {
+  margin: 0; background: var(--cream); border: 4px solid #fff; border-radius: var(--radius); overflow: hidden;
+  box-shadow: 0 10px 0 color-mix(in srgb, var(--hot) 45%, transparent); transition: transform .25s;
+}
+.post:nth-child(odd) { rotate: -.8deg; } .post:nth-child(even) { rotate: .8deg; }
+.post:hover { transform: translateY(-6px); rotate: 0deg; }
+.post iframe { display: block; width: 100%; height: 520px; border: 0; background: #fff; }
+.post[data-platform="tiktok"] iframe { height: 740px; }
+.post[data-platform="youtube"] iframe { height: auto; aspect-ratio: 16 / 9; }
+.post figcaption { padding: .7rem 1rem .9rem; display: flex; gap: .6rem; align-items: baseline; justify-content: space-between; }
+.post figcaption span { font-family: "Gaegu", "Karla", sans-serif; font-weight: 700; font-size: 1.15rem; line-height: 1.2; }
+.post figcaption a { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--hot); white-space: nowrap; }

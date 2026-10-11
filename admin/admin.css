@@ -1,0 +1,44 @@
+.studio-wrap { max-width: 720px; margin: 0 auto; padding: 2rem 16px 5rem; position: relative; z-index: 2; }
+.studio .brand { display: inline-block; font-size: 1.8rem; margin-bottom: 1.5rem; }
+.studio h1 { font-size: clamp(2rem, 6vw, 2.8rem); color: var(--berry); }
+.studio h2 { font-size: 1.6rem; }
+.panel {
+  background: var(--cream); border: 4px solid #fff; border-radius: var(--radius); padding: clamp(1.2rem, 4vw, 2rem);
+  box-shadow: 0 12px 0 color-mix(in srgb, var(--hot) 45%, transparent), 0 30px 60px rgba(138, 28, 92, .18);
+  display: grid; gap: .7rem;
+}
+.note { font-family: "Gaegu", "Karla", sans-serif; font-weight: 700; font-size: 1.2rem; line-height: 1.3; }
+.studio label { font-weight: 700; font-size: .9rem; margin-top: .4rem; display: block; }
+.studio .opt { font-weight: 500; opacity: .6; }
+.studio input, .studio select {
+  width: 100%; font: inherit; color: var(--ink); background: #fff; padding: .8rem 1rem;
+  border: 2px solid var(--pink-2); border-radius: 14px;
+}
+.studio input:focus, .studio select:focus { outline: 3px solid var(--hot); outline-offset: 1px; border-color: var(--hot); }
+.two { display: grid; grid-template-columns: 1fr 1.4fr; gap: .8rem; }
+.panel .btn { justify-self: start; margin-top: .6rem; }
+.btn[disabled] { opacity: .6; pointer-events: none; }
+.error { color: #b00020; font-weight: 700; min-height: 1.4em; }
+
+.list-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin: 3rem 0 1rem; }
+.list-head div { display: flex; gap: .6rem; }
+.list-head .btn { text-decoration: none; font-size: .9rem; padding: .5rem 1rem; }
+#count { font-family: "Karla", sans-serif; font-size: 1rem; font-weight: 700; color: var(--hot); }
+.posts { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
+.posts li {
+  background: var(--cream); border: 3px solid #fff; border-radius: 18px; padding: .8rem 1rem;
+  display: grid; grid-template-columns: 1fr auto; gap: .2rem 1rem; align-items: center;
+}
+.posts .meta { font-weight: 700; text-transform: capitalize; }
+.posts .meta span { color: var(--hot); }
+.posts a.link { font-size: .85rem; overflow-wrap: anywhere; opacity: .8; }
+.posts .cap { font-family: "Gaegu", "Karla", sans-serif; font-weight: 700; font-size: 1.1rem; }
+.posts .info { display: grid; gap: .1rem; min-width: 0; }
+.posts .acts { display: flex; gap: .3rem; }
+.posts .acts button {
+  width: 40px; height: 40px; border-radius: 12px; border: 0; background: var(--pink); font-weight: 700; font-size: 1rem;
+}
+.posts .acts button:hover { background: var(--hot); color: #fff; }
+.posts .acts button[disabled] { opacity: .3; pointer-events: none; }
+
+@media (max-width: 560px) { .two { grid-template-columns: 1fr; } }
