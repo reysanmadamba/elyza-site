@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Gaegu:wght@700&family=Karla:wght@500;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
@@ -91,7 +91,7 @@
 <nav class="nav" aria-label="Sections">
   <a class="brand" href="#top">ELYZA<span>♡</span></a>
   <div class="links">
-    <a href="#work">work</a>
+    <a href="/works">my works</a>
     <a href="#glam">glam</a>
     <a href="#play">play</a>
     <a href="#peaks">peaks</a>
@@ -157,15 +157,16 @@
   </ul>
 </section>
 
-<!-- WORK: filled from /api/posts, hidden until there is something to show -->
-<section class="world work" id="work" hidden>
+<!-- WORK: latest posts from /api/posts, hidden until there is something to show -->
+<section class="world work" id="work" data-works hidden>
   <div class="world-head">
-    <p class="kicker">the portfolio</p>
+    <p class="kicker">my works</p>
     <h2>Fresh from the feed</h2>
     <p>Her latest looks, clips and summit selfies.</p>
   </div>
   <div class="chips" id="chips" role="group" aria-label="Filter posts"></div>
-  <div class="grid" id="grid"></div>
+  <div class="grid" id="grid" data-limit="6"></div>
+  <p class="more"><a class="btn" href="/works">See all my works →</a></p>
 </section>
 
 <!-- GLAM -->
@@ -317,6 +318,7 @@
 </footer>
 
 <div class="toast" id="toast" role="status"></div>
-<script src="script.js"></script>
+<script src="/script.js"></script>
+<script src="/works.js"></script>
 </body>
 </html>

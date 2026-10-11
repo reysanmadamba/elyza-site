@@ -278,3 +278,14 @@ fieldset button.on { outline: 3px solid var(--berry); outline-offset: 2px; trans
 .post figcaption { padding: .7rem 1rem .9rem; display: flex; gap: .6rem; align-items: baseline; justify-content: space-between; }
 .post figcaption span { font-family: "Gaegu", "Karla", sans-serif; font-weight: 700; font-size: 1.15rem; line-height: 1.2; }
 .post figcaption a { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--hot); white-space: nowrap; }
+.post img, .post video { display: block; width: 100%; max-height: 740px; object-fit: cover; background: #fff; }
+.post video { background: #2a1840; }
+.more { text-align: center; margin-top: 2rem; }
+.more .btn { display: inline-block; text-decoration: none; font-size: 1.05rem; padding: .8rem 1.5rem; }
+.empty { text-align: center; font-family: "Gaegu", "Karla", sans-serif; font-weight: 700; font-size: 1.4rem; }
+
+/* my works page */
+.works-hero { text-align: center; padding: 8rem 16px 0; position: relative; z-index: 2; }
+.works-hero h1 { font-size: clamp(3.5rem, 13vw, 8rem); color: var(--hot); -webkit-text-stroke: 4px #fff; paint-order: stroke fill; text-shadow: 0 8px 0 var(--berry); }
+.works-hero p:last-child { font-family: "Gaegu", "Karla", sans-serif; font-weight: 700; font-size: 1.4rem; margin-top: 1rem; }
+.works-page main section { margin-top: 3rem; }

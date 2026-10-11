@@ -59,7 +59,29 @@ export function isAuthed(req) {
   return Number(exp) > Date.now() / 1000 && same(sig, sign(exp));
 }
 
-/* ---------- turning a pasted link into an embeddable post ---------- */
+/* ---------- posts ---------- */
+const finish = (post, category, caption) => ({
+  id: randomUUID(),
+  ...post,
+  category: CATEGORIES.includes(category) ? category : 'life',
+  caption: String(caption || '').slice(0, 140),
+  addedAt: new Date().toISOString(),
+});
+
+// a photo or clip she uploaded straight to our Blob store
+export function toUploadPost(upload, category, caption) {
+  let url;
+  try { url = new URL(String(upload?.url)); } catch { return null; }
+  const ours = url.protocol === 'https:' && url.hostname.endsWith('.public.blob.vercel-storage.com') && url.pathname.startsWith('/uploads/');
+  const type = String(upload?.contentType || '');
+  const platform = type.startsWith('image/') ? 'photo' : type.startsWith('video/') ? 'video' : null;
+  if (!ours || !platform) return null;
+  return finish({ url: url.href, platform, src: url.href }, category, caption);
+}
+
+export const deleteUpload = (url) => del(url);
+
+// a pasted link from Instagram, TikTok, Facebook or YouTube
 export async function toPost(rawUrl, category, caption) {
   let url;
   try { url = new URL(String(rawUrl).trim()); } catch { return null; }
@@ -96,13 +118,6 @@ export async function toPost(rawUrl, category, caption) {
   }
 
   url.hash = '';
-  return {
-    id: randomUUID(),
-    url: url.origin + url.pathname + (platform === 'youtube' || platform === 'facebook' ? url.search : ''),
-    platform,
-    embed,
-    category: CATEGORIES.includes(category) ? category : 'life',
-    caption: String(caption || '').slice(0, 140),
-    addedAt: new Date().toISOString(),
-  };
+  const clean = url.origin + url.pathname + (platform === 'youtube' || platform === 'facebook' ? url.search : '');
+  return finish({ url: clean, platform, embed }, category, caption);
 }
